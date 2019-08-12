@@ -30,7 +30,8 @@ const typeDefs = gql`
   }
 
   type Mutation {
-    toggleTodo(id: ID!): Todo
+    toggleTodo(id: String!): Todo
+    addTodo(title: String!): Todo
   }
 `;
 

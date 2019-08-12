@@ -38,6 +38,11 @@ let todos = [
   }
 ];
 
+let n = 2;
+const idGenerator = () => {
+  return ++n + "";
+}
+
 const findTodoById = (id) => {
   return todos.find(todo => todo.id === id);
 }
@@ -59,6 +64,16 @@ const toggleTodo = (_, { id }) => {
   };
 }
 
+const addTodo = (_, { title }) => {
+  const newTodo = {
+    id: idGenerator(),
+    title,
+    done: false,
+  }
+  todos.push(newTodo);
+  return newTodo;
+}
+
 // Resolvers define the technique for fetching the types in the
 // schema.  We'll retrieve books from the "books" array above.
 const resolvers = {
@@ -68,7 +83,8 @@ const resolvers = {
     todos: () => todos,
   },
   Mutation: {
-    toggleTodo
+    toggleTodo,
+    addTodo
   }
 };
 
